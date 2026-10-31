@@ -1,0 +1,65 @@
+{
+  "name": "tally",
+  "productName": "Tally",
+  "version": "1.0.0",
+  "description": "A screen recorder that runs as a website and as a desktop app.",
+  "main": "main.js",
+  "author": {
+    "name": "Your Name",
+    "email": "you@example.com"
+  },
+  "homepage": "https://github.com/YOUR-GITHUB-USERNAME/tally",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "web": "npx --yes serve web",
+    "dist": "electron-builder --publish never",
+    "dist:win": "electron-builder --win --publish never",
+    "dist:mac": "electron-builder --mac --publish never",
+    "dist:linux": "electron-builder --linux --publish never"
+  },
+  "devDependencies": {
+    "electron": "^45.2.1",
+    "electron-builder": "^26.18.0"
+  },
+  "build": {
+    "appId": "com.example.tally",
+    "productName": "Tally",
+    "publish": null,
+    "files": [
+      "main.js",
+      "preload.js",
+      "web/**/*"
+    ],
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "win": {
+      "target": [{ "target": "nsis", "arch": ["x64"] }]
+    },
+    "nsis": {
+      "artifactName": "Tally-Windows-Setup.${ext}",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "mac": {
+      "target": [{ "target": "dmg", "arch": ["universal"] }],
+      "category": "public.app-category.video"
+    },
+    "dmg": {
+      "artifactName": "Tally-macOS.${ext}"
+    },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "category": "AudioVideo",
+      "maintainer": "Your Name <you@example.com>"
+    },
+    "appImage": {
+      "artifactName": "Tally-Linux.${ext}"
+    },
+    "deb": {
+      "artifactName": "Tally-Linux.${ext}"
+    }
+  }
+}

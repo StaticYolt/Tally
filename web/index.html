@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self' blob:; connect-src https://api.github.com">
+  <title>Tally — screen recorder</title>
+  <meta name="description" content="Record your screen in the browser or with the desktop app.">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Tally home">
+      <span class="tally-lamp" aria-hidden="true"></span>
+      <span class="brand-name">Tally</span>
+    </a>
+    <a class="header-link web-only" href="#download">Get the desktop app</a>
+    <span class="desktop-badge desktop-only">Desktop app</span>
+  </header>
+
+  <main id="top">
+    <section class="intro">
+      <h1>Record your screen. Keep the video.</h1>
+      <p class="lede">Pick a screen or window, hit record, and save a video file when you're done. Nothing is uploaded — the recording stays on your computer.</p>
+    </section>
+
+    <section class="monitor" aria-label="Recorder">
+      <div class="monitor-frame" data-state="idle">
+        <video id="live" class="screen" autoplay muted playsinline></video>
+        <video id="playback" class="screen" controls playsinline hidden></video>
+
+        <div class="empty" id="empty">
+          <p class="empty-title">No source selected</p>
+          <p class="empty-text">Choose what to record. You'll see a preview here before recording starts.</p>
+        </div>
+
+        <div class="rec-indicator" aria-hidden="true">
+          <span class="tally-lamp"></span>
+          <span id="timer">00:00</span>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="btn-source" class="btn btn-quiet">Choose screen</button>
+        <button id="btn-record" class="btn btn-record" disabled>
+          <span class="rec-dot" aria-hidden="true"></span>
+          <span class="label">Start recording</span>
+        </button>
+        <button id="btn-save" class="btn btn-ink" hidden>Save video</button>
+        <button id="btn-discard" class="btn btn-quiet" hidden>Discard</button>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section id="download" class="download web-only" aria-labelledby="download-heading">
+      <div class="download-head">
+        <h2 id="download-heading">Get the desktop app</h2>
+        <p>Same recorder, in its own window. The desktop version adds a source picker with thumbnails and saves straight to a folder you choose.</p>
+        <p class="version" id="version"></p>
+      </div>
+
+      <ul class="platforms" id="platforms">
+        <li class="platform" data-os="windows">
+          <div class="platform-info">
+            <h3>Windows</h3>
+            <p>Installer for 64-bit Windows 10 and 11 (.exe)</p>
+          </div>
+          <a class="btn btn-ink" data-asset="windows" href="#">Download for Windows</a>
+        </li>
+        <li class="platform" data-os="mac">
+          <div class="platform-info">
+            <h3>macOS</h3>
+            <p>Disk image for Apple silicon and Intel Macs (.dmg)</p>
+          </div>
+          <a class="btn btn-ink" data-asset="mac" href="#">Download for macOS</a>
+        </li>
+        <li class="platform" data-os="linux">
+          <div class="platform-info">
+            <h3>Linux</h3>
+            <p>Any distro (.AppImage) or Debian and Ubuntu (.deb)</p>
+          </div>
+          <div class="platform-actions">
+            <a class="btn btn-ink" data-asset="linux" href="#">Download AppImage</a>
+            <a class="btn btn-quiet" data-asset="linux-deb" href="#">.deb</a>
+          </div>
+        </li>
+      </ul>
+
+      <p class="fine-print">The app isn't code-signed yet, so Windows and macOS will warn the first time you open it. <a id="all-releases" href="#">See all releases</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Tally is open source. <a id="source-link" href="#">View the code on GitHub</a></p>
+  </footer>
+
+  <!-- Picker for the desktop app (the browser uses its own built-in picker) -->
+  <dialog id="picker" class="picker" aria-labelledby="picker-title">
+    <form method="dialog">
+      <h2 id="picker-title">Choose what to record</h2>
+      <div class="picker-grid" id="picker-grid"></div>
+      <div class="picker-actions">
+        <button class="btn btn-quiet" value="cancel">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
