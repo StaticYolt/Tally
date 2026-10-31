@@ -1,7 +1,7 @@
 {
   "name": "tally",
   "productName": "Tally",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A screen recorder that runs as a website and as a desktop app.",
   "main": "main.js",
   "author": {
@@ -36,7 +36,14 @@
       "output": "dist"
     },
     "win": {
-      "target": [{ "target": "nsis", "arch": ["x64"] }]
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
     },
     "nsis": {
       "artifactName": "Tally-Windows-Setup.${ext}",
@@ -44,14 +51,24 @@
       "allowToChangeInstallationDirectory": true
     },
     "mac": {
-      "target": [{ "target": "dmg", "arch": ["universal"] }],
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
+        }
+      ],
       "category": "public.app-category.video"
     },
     "dmg": {
       "artifactName": "Tally-macOS.${ext}"
     },
     "linux": {
-      "target": ["AppImage", "deb"],
+      "target": [
+        "AppImage",
+        "deb"
+      ],
       "category": "AudioVideo",
       "maintainer": "Your Name <you@example.com>"
     },
